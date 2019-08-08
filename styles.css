@@ -1,12 +1,12 @@
 html, body {
-    height: 100vh;
+    height: 100%;
 }
 body {
-    margin: 0;
-}
-div {
     background-color: lightslategrey;
+    margin: 0;
+    overflow-y: hidden;
 }
+
 .optix {
     background-color: lightsalmon;
     font-size: 20px;
@@ -20,11 +20,9 @@ div {
 }
 .flex {
     width: 100%;
-    height:100%;
     display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
 }
 .imeg {
     flex: 1;
@@ -34,4 +32,12 @@ div {
     justify-content: space-around;
     font-size: 30px;
     font-weight: bolder;
+}
+.content {
+    overflow-y: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
