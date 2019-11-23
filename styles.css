@@ -2,42 +2,45 @@ html, body {
     height: 100%;
 }
 body {
-    background-color: lightslategrey;
+    background-color: black;
     margin: 0;
-    overflow-y: hidden;
+    overflow: hidden;
+    box-sizing: border-box;
 }
-
-.optix {
-    background-color: lightsalmon;
-    font-size: 20px;
-    font-family: Calibri;
-}
-.tear {
-    color: fuchsia;
-}
-.photos {
-    width: 300px;
-}
-.flex {
-    width: 100%;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-}
-.imeg {
-    flex: 1;
-}
-.flex1 {
-    display:flex;
-    justify-content: space-around;
-    font-size: 30px;
-    font-weight: bolder;
-}
-.content {
-    overflow-y: auto;
+.sea-field-container {
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    width: 100%;
+}
+.sea-field-container-inner {
+    display: flex;
+}
+.sea-field {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    margin: 32px;
+}
+.row {
+    display: flex;
+}
+.cell {
+    height: 32px;
+    width: 32px;
+    margin: 1px;
+    background-color: grey;
+
+}
+.ship {
+    background-color: darkgreen;
+}
+.ship.active {
+    background-color: darkred;
+
+}
+.active {
+    outline: 2px solid blue;
+    opacity: 0.8;
+}
+.info-row {
+
 }

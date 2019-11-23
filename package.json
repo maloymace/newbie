@@ -1,0 +1,14 @@
+{
+  "name": "newbie",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/maloymace/newbie.git",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/preset-react": "^7.7.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4"
+  }
+}
