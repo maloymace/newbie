@@ -10,4 +10,4 @@ seaField.addShip(4, 6, 6);
 console.log('seaField=', seaField);
 
 const seaField1 = new SeaField();
-seaField.attach(document.getElementById('sea-field-1'));
+seaField1.attach(document.getElementById('sea-field-1'));
