@@ -34,7 +34,7 @@ export class SeaField {
         this.field.forEach((rowInfo) => {
             const row = this.createRow(rowInfo);
             this.el.appendChild(row);
-        })
+        });
         const info = document.createElement('div');
         info.classList.add('info-row');
         this.el.appendChild(info);
@@ -56,7 +56,7 @@ export class SeaField {
     createCell(cellInfo) {
         const cell = document.createElement('div');
         cell.classList.add('cell');
-        cell.addEventListener('click', (e) => this.onCellClick(cellInfo));
+        cell.addEventListener('click', () => this.onCellClick(cellInfo));
 
         cellInfo.el = cell;
 
@@ -78,9 +78,8 @@ export class SeaField {
         let currentRowIndex = rowIndex;
         let currentCellIndex = cellIndex;
 
-        if (length > 4) {
-
-            return;
+        if(!this.isCanShipBePlaced(rowIndex, cellIndex, length, isVertical)){
+            return
         }
 
 
@@ -94,6 +93,7 @@ export class SeaField {
                 currentCellIndex++;
             }
         }
+
     }
 
     updateCell(cellInfo) {
@@ -108,5 +108,13 @@ export class SeaField {
         } else {
             cellInfo.el.classList.remove('ship');
         }
+    }
+
+    isCanShipBePlaced(rowIndex, cellIndex, length, isVertical) {
+        if (length > 4) {
+
+            return;
+        }
+        return true;
     }
 }
