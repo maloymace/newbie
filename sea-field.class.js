@@ -1,11 +1,21 @@
 export class SeaField {
     el;
+    elInfoRow;
+
     field = [];
+    state;
 
     activeCellInfo;
 
     constructor() {
+        this.state = 0;
         this.fillFieldDefaultData();
+    }
+
+    fillInfoRow() {
+        if (this.state === 0) {
+            this.elInfoRow.innerHTML = 'Выбери корабль';
+        }
     }
 
     fillFieldDefaultData() {
@@ -28,6 +38,7 @@ export class SeaField {
     attach(el) {
         this.el = el;
         this.fillEl();
+        this.fillInfoRow();
     }
 
     fillEl() {
@@ -35,9 +46,9 @@ export class SeaField {
             const row = this.createRow(rowInfo);
             this.el.appendChild(row);
         });
-        const info = document.createElement('div');
-        info.classList.add('info-row');
-        this.el.appendChild(info);
+        this.elInfoRow = document.createElement('div');
+        this.elInfoRow.classList.add('info-row');
+        this.el.appendChild(this.elInfoRow);
     }
 
     createRow(rowInfo) {
@@ -78,7 +89,7 @@ export class SeaField {
         let currentRowIndex = rowIndex;
         let currentCellIndex = cellIndex;
 
-        if(!this.isCanShipBePlaced(rowIndex, cellIndex, length, isVertical)){
+        if(!this.isShipCanBePlaced(rowIndex, cellIndex, length, isVertical)){
             return
         }
 
@@ -110,11 +121,57 @@ export class SeaField {
         }
     }
 
-    isCanShipBePlaced(rowIndex, cellIndex, length, isVertical) {
+    isShipCanBePlaced(rowIndex, cellIndex, length, isVertical) {
         if (length > 4) {
 
             return;
         }
+
+        let currentRowIndex = rowIndex;
+        let currentCellIndex = cellIndex;
+
+        for (let i = 0; i < length; i++) {
+
+            if (!this.canCellBePlaced(currentRowIndex, currentCellIndex)) {
+                return;
+            }
+
+
+            if (isVertical) {
+                currentRowIndex++;
+            } else {
+                currentCellIndex++;
+            }
+        }
+
         return true;
     }
+
+    canCellBePlaced(rowIndex, cellIndex) {
+        if (rowIndex > 9 || rowIndex < 0 || cellIndex > 9 || cellIndex < 0) {
+            return;
+        }
+
+        const coords = [
+            rowIndex,     cellIndex,
+            rowIndex - 1, cellIndex - 1,
+            rowIndex - 1, cellIndex,
+            rowIndex - 1, cellIndex + 1,
+            rowIndex,     cellIndex + 1,
+            rowIndex + 1, cellIndex + 1,
+            rowIndex + 1, cellIndex,
+            rowIndex + 1, cellIndex - 1,
+            rowIndex + 1, cellIndex
+        ];
+
+        for (let i = 0; i < coords.length; i = i + 2) {
+            if (this.field[coords[i]][coords[i + 1]].isShip) {
+                return;
+            }
+        }
+
+        return true;
+    }
+
+
 }

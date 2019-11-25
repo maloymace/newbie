@@ -22,12 +22,14 @@ body {
 }
 .row {
     display: flex;
+    position: relative;
 }
 .cell {
     height: 32px;
     width: 32px;
     margin: 1px;
     background-color: grey;
+    position: relative;
 
 }
 .ship {
@@ -42,5 +44,12 @@ body {
     opacity: 0.8;
 }
 .info-row {
-
+color: white;
+}
+.missed-shot:before {
+    top: 11px;
+    left: 14px;
+    display: block;
+    position: absolute;
+    content: '\00ba';
 }
