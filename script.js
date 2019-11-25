@@ -12,3 +12,5 @@ seaField1.attach(document.getElementById('sea-field-1'))
 
 console.log('seaField=', seaField);
 
+const seaField1 = new SeaField();
+seaField1.attach(document.getElementById('sea-field-1'));
