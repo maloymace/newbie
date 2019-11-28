@@ -30,8 +30,8 @@ body {
     margin: 1px;
     background-color: grey;
     position: relative;
-
 }
+
 .ship {
     background-color: darkgreen;
 }
@@ -52,4 +52,8 @@ color: white;
     display: block;
     position: absolute;
     content: '\00ba';
+}
+
+.state-0 .cell:hover {
+    opacity: 0.8;
 }

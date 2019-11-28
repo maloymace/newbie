@@ -3,18 +3,22 @@ export class SeaField {
     elInfoRow;
 
     field = [];
-    state;
+    stateInfo;
 
     activeCellInfo;
 
     constructor() {
-        this.state = 0;
         this.fillFieldDefaultData();
     }
 
     fillInfoRow() {
-        if (this.state === 0) {
-            this.elInfoRow.innerHTML = 'Выбери корабль';
+        if (this.stateInfo.id === 0) {
+            if (this.stateInfo.subId === 0) {
+                this.elInfoRow.innerHTML = 'Нажмите клавишу 1-4 для выбора кол-ва палуб корабля';
+            } else if (this.stateInfo.subId === 1) {
+                this.elInfoRow.innerHTML = 'Нажмите клавишу 1 чтобы изменить направление корабля на вертикальное / 2 - вернуть в горизонтальное';
+            }
+
         }
     }
 
@@ -37,8 +41,10 @@ export class SeaField {
 
     attach(el) {
         this.el = el;
+        this.setState(0);
         this.fillEl();
         this.fillInfoRow();
+
     }
 
     fillEl() {
@@ -92,6 +98,7 @@ export class SeaField {
         if(!this.isShipCanBePlaced(rowIndex, cellIndex, length, isVertical)){
             return
         }
+
 
 
         for (let i = 0; i < length; i++) {
@@ -173,5 +180,15 @@ export class SeaField {
         return true;
     }
 
+    setState(stateId) {
+        this.stateInfo = {
+            id: stateId,
+        };
+        if (this.stateInfo.id === 0) {
+            this.stateInfo.subId = 0;
+        }
+        this.el.classList.add('state-' + this.stateInfo.id);
+
+    }
 
 }
